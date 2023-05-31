@@ -1,0 +1,60 @@
+{% set name = "tsai" %}
+{% set version = "0.3.6" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: d54d88ca40d27d29e96adc98cb9641c848411caedaf517a93dce3b64c4d37915
+
+build:
+  number: 0
+  skip: True  #[py<37 or py>310 or s390x or ppc64le]
+  entry_points:
+    - nb2py=tsai.export:nb2py
+  script: "{{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv"
+
+requirements:
+  host:
+    - pip
+    - python
+    - wheel
+    - setuptools
+  run:
+    - fastai >=2.7.12
+    - imbalanced-learn >=0.8.0
+    - psutil >=5.4.8
+    - python
+    - pyts >=0.12.0
+    - pytorch >=1.7,<2.1
+    - ipykernel
+    - numba >=0.48.0
+test:
+  imports:
+    - tsai
+    - tsai.callback
+    - tsai.data
+    - tsai.models
+  commands:
+    - nb2py --help
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: "https://github.com/timeseriesAI/tsai/"
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE 
+  summary: "Practical Deep Learning for Time Series / Sequential Data library based on fastai & Pytorch"
+  description: |
+    tsai is an open-source deep learning package built on top of Pytorch & fastai focused on state-of-the-art 
+    techniques for time series tasks like classification, regression, forecasting, imputation
+  doc_url: https://timeseriesai.github.io/tsai/
+  dev_url: https://github.com/timeseriesAI/tsai
+
+extra:
+  recipe-maintainers:
+    - Marek Waszkiewicz
