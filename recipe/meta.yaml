@@ -10,7 +10,7 @@ source:
   sha256: d54d88ca40d27d29e96adc98cb9641c848411caedaf517a93dce3b64c4d37915
 
 build:
-  number: 0
+  number: 1
   skip: True  #[py<37 or py>310 or s390x or ppc64le]
   entry_points:
     - nb2py=tsai.export:nb2py
@@ -29,8 +29,6 @@ requirements:
     - python
     - pyts >=0.12.0
     - pytorch >=1.7,<2.1
-    - ipykernel
-    - numba >=0.48.0
 test:
   imports:
     - tsai
