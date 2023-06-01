@@ -29,6 +29,8 @@ requirements:
     - python
     - pyts >=0.12.0
     - pytorch >=1.7,<2.1
+    #upstream marks this as dev dependency, but it is needed in runtime 
+    - ipykernel >6
 test:
   imports:
     - tsai
