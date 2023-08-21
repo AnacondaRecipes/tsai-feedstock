@@ -1,5 +1,5 @@
 {% set name = "tsai" %}
-{% set version = "0.3.6" %}
+{% set version = "0.3.7" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,10 +7,10 @@ package:
 
 source:
   url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: d54d88ca40d27d29e96adc98cb9641c848411caedaf517a93dce3b64c4d37915
+  sha256: cd2dbe628b1268b64d962a5f62a616dc79015086461d5620f0427b530fdf47c3
 
 build:
-  number: 2
+  number: 0
   skip: True  #[py<37 or s390x or ppc64le]
   entry_points:
     - nb2py=tsai.export:nb2py
